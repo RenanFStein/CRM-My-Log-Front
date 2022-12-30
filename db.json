@@ -220,8 +220,7 @@
       "localCarga": "1",
       "localEntrega": "1",
       "valorFrete": 101000,
-      "status": "Recebido",
-      "data": "2022-01",
+      "status": "A Receber",
       "id": 15
     }
   ]

@@ -104,7 +104,8 @@ export default {
             localCarga: $evt.localCarga,
             localEntrega: $evt.localEntrega,
             valorFrete: $evt.valorFrete,
-            status: this.selected
+            status: this.selected,
+            data:$evt.data,
           }
         }
         console.log(payload)

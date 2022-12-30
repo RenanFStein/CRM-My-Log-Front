@@ -208,7 +208,8 @@ export default {
                 localCarga: "",
                 localEntrega: "",
                 valorFrete: "",
-                status: ""
+                status: "",
+                data:""
               }
             })
         console.log('Frete Adicionado com Sucesso.')
