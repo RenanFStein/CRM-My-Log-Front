@@ -90,7 +90,7 @@
       "localCarga": "200",
       "localEntrega": "200",
       "valorFrete": 22000,
-      "status": "Recebido",
+      "status": "A Receber",
       "data": "2022-02",
       "id": 20
     },
@@ -221,6 +221,7 @@
       "localEntrega": "1",
       "valorFrete": 101000,
       "status": "A Receber",
+      "data": "2022-05",
       "id": 15
     }
   ]
