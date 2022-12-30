@@ -1,0 +1,228 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "title": "Renan F. Stein",
+      "email": "renan@teste.com",
+      "passowrd": "12345",
+      "statusBar": true
+    }
+  ],
+  "veiculos": [
+    {
+      "id": 1,
+      "veiculo": "Veiculo 01",
+      "cor": "Preto",
+      "anofabricacao": "2018",
+      "anoAquisicao": "2021",
+      "valorAquisicao": "100000",
+      "status": "Ativo"
+    },
+    {
+      "id": 2,
+      "veiculo": "Veiculo 02",
+      "cor": "Preto",
+      "anofabricacao": "2018",
+      "anoAquisicao": "2021",
+      "valorAquisicao": "100000",
+      "status": "Ativo"
+    },
+    {
+      "id": 3,
+      "veiculo": "Veiculo 03",
+      "cor": "Preto",
+      "anofabricacao": "2018",
+      "anoAquisicao": "2021",
+      "valorAquisicao": "100000",
+      "status": "Ativo"
+    },
+    {
+      "id": 4,
+      "veiculo": "Veiculo 04",
+      "cor": "Preto",
+      "anofabricacao": "2018",
+      "anoAquisicao": "2021",
+      "valorAquisicao": "100000",
+      "status": "Inativo"
+    },
+    {
+      "id": 5,
+      "veiculo": "Veiculo 04",
+      "cor": "Preto",
+      "anofabricacao": "2018",
+      "anoAquisicao": "2021",
+      "valorAquisicao": "100000",
+      "status": "Ativo"
+    },
+    {
+      "veiculo": "Teste Carro",
+      "cor": "Bege",
+      "anofabricacao": 2020,
+      "anoAquisicao": 2021,
+      "valorAquisicao": 1000,
+      "status": "Ativo",
+      "id": 6
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "cor": "Azul",
+      "anofabricacao": 100,
+      "anoAquisicao": 1500,
+      "valorAquisicao": 180000,
+      "status": "Ativo",
+      "id": 7
+    }
+  ],
+  "fretes": [
+    {
+      "veiculo": "200",
+      "empresa": "200",
+      "localCarga": "200",
+      "localEntrega": "200",
+      "valorFrete": 27000,
+      "status": "A Receber",
+      "data": "2022-01",
+      "id": 1
+    },
+    {
+      "veiculo": "200",
+      "empresa": "200",
+      "localCarga": "200",
+      "localEntrega": "200",
+      "valorFrete": 22000,
+      "status": "Recebido",
+      "data": "2022-02",
+      "id": 20
+    },
+    {
+      "veiculo": "200",
+      "empresa": "200",
+      "localCarga": "200",
+      "localEntrega": "200",
+      "valorFrete": 20700,
+      "status": "Em Atraso",
+      "data": "2022-03",
+      "id": 2
+    },
+    {
+      "veiculo": "200",
+      "empresa": "200",
+      "localCarga": "200",
+      "localEntrega": "200",
+      "valorFrete": 10700,
+      "status": "Em Atraso",
+      "data": "2022-04",
+      "id": 4
+    },
+    {
+      "veiculo": "200",
+      "empresa": "200",
+      "localCarga": "200",
+      "localEntrega": "200",
+      "valorFrete": 5700,
+      "status": "Em Atraso",
+      "data": "2022-05",
+      "id": 5
+    },
+    {
+      "veiculo": "200",
+      "empresa": "200",
+      "localCarga": "200",
+      "localEntrega": "200",
+      "valorFrete": 12200,
+      "status": "Em Atraso",
+      "data": "2022-02",
+      "id": 6
+    },
+    {
+      "veiculo": "Teste Carro",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 120000,
+      "status": "Recebido",
+      "data": "2022-04",
+      "id": 7
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 71000,
+      "status": "Recebido",
+      "data": "2022-09",
+      "id": 8
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 170000,
+      "status": "Recebido",
+      "data": "2022-12",
+      "id": 9
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 110000,
+      "status": "Recebido",
+      "data": "2022-12",
+      "id": 10
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 10000,
+      "status": "Recebido",
+      "data": "2022-05",
+      "id": 11
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 71000,
+      "status": "Recebido",
+      "data": "2022-01",
+      "id": 12
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 110000,
+      "status": "Recebido",
+      "data": "2022-01",
+      "id": 13
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 100040,
+      "status": "Recebido",
+      "data": "2022-01",
+      "id": 14
+    },
+    {
+      "veiculo": "Veiculos 10",
+      "empresa": "1",
+      "localCarga": "1",
+      "localEntrega": "1",
+      "valorFrete": 101000,
+      "status": "Recebido",
+      "data": "2022-01",
+      "id": 15
+    }
+  ]
+}
