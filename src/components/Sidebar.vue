@@ -137,7 +137,7 @@ export default {
   right: 0;
   height: 30px;
   width: 30px;
-  background-color: white;
+  background-color: rgb(239 246 255);
 }
 
 .side-btn.active .link-container::before {

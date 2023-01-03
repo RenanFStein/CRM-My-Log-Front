@@ -71,6 +71,15 @@
       "valorAquisicao": 180000,
       "status": "Ativo",
       "id": 7
+    },
+    {
+      "veiculo": "Corsa",
+      "cor": "Prata",
+      "anofabricacao": 2011,
+      "anoAquisicao": 2022,
+      "valorAquisicao": 27500,
+      "status": "Inativo",
+      "id": 8
     }
   ],
   "fretes": [
@@ -120,7 +129,7 @@
       "localCarga": "200",
       "localEntrega": "200",
       "valorFrete": 5700,
-      "status": "Em Atraso",
+      "status": "A Receber",
       "data": "2022-05",
       "id": 5
     },
@@ -210,7 +219,7 @@
       "localCarga": "1",
       "localEntrega": "1",
       "valorFrete": 100040,
-      "status": "Recebido",
+      "status": "Em Atraso",
       "data": "2022-01",
       "id": 14
     },
@@ -223,6 +232,16 @@
       "status": "A Receber",
       "data": "2022-05",
       "id": 15
+    },
+    {
+      "veiculo": "Corsa",
+      "empresa": "Goiania LTDA",
+      "localCarga": "Goiania",
+      "localEntrega": "10Goiania",
+      "valorFrete": 1500,
+      "status": "A Receber",
+      "data": "2022-06",
+      "id": 21
     }
   ]
 }
