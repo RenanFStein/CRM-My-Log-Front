@@ -49,7 +49,6 @@ export default {
     this.loadedFrete = false;
     try {
       this.dashboardFrete = {
-        labels: this.filterData(),
         datasets: [
           {
             label: ['Fretes Realizados'],
@@ -75,7 +74,7 @@ export default {
         return [...dado]
     },
     filterFretes() {
-      const dados = this.$store.state.fretes.map((item) => item.data).filter((item) => item !== "" )
+      const dados = this.$store.state.fretes.map((item) => item.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')).filter((item) => item !== "" )
       const countMap = Object.create(null);
       for (const element of dados) {
         if (!countMap[element]) {

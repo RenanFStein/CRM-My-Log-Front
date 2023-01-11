@@ -14,7 +14,7 @@
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Lançamento de Frete</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form   @submit.stop.prevent="addFrete">
+            <form   @submit.stop.prevent="addFrete()">
             <div class="modal-body w-full p-3">
               <div class="flex justify-content-start pb-2">
                 <div class="flex justify-content-start pb-2 w-full">
@@ -35,7 +35,7 @@
               <div class="flex justify-content-start pb-2 w-full">
 
                   <label class="w-1/4 text-start">Veiculo</label>
-                <select name="tipoBeneficiario" v-model="fretes.veiculo" class=" input-group ml-6 w-3/4 h-8 p-1
+                <select name="tipoBeneficiario" v-model="fretes.veiculoId" class=" input-group ml-6 w-3/4 h-8 p-1
                                                                         items-center
                                                                         rounded ring-1
                                                                         ring-gray-600
@@ -44,8 +44,8 @@
                                                                         focus:border focus:border-2
                                                                         focus:border-lime-600 appearance-none
                                                                         border  w-full text-gray-700 leading-tight focus:outline-lime-600" >
-                  <option v-for="veiculos in $store.state.veiculos"  :key="veiculos.id">
-                    {{veiculos.veiculo}}
+                  <option v-for="veiculos in $store.state.veiculos"  :key="veiculos.id" :value="veiculos.id">
+                    {{veiculos.modelo}}
                   </option>
                 </select>
 
@@ -76,7 +76,7 @@
                   focus:ring-1
                   focus:border focus:border-2
                   focus:border-lime-600 appearance-none
-                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="fretes.localCarga">
+                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="fretes.carregamento">
 
               </div>
               <div class="flex justify-content-start pb-2 w-full">
@@ -89,12 +89,12 @@
                   focus:ring-1
                   focus:border focus:border-2
                   focus:border-lime-600 appearance-none
-                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="fretes.localEntrega">
+                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="fretes.entrega">
 
               </div>
               <div class="flex justify-content-start w-full">
                 <label class="w-1/4 text-start">Status</label>
-                <select name="tipoBeneficiario" v-model="fretes.status" class=" input-group ml-6 w-3/4 h-8 p-1
+                <select name="tipoBeneficiario" v-model="fretes.statusFrete" class=" input-group ml-6 w-3/4 h-8 p-1
                                                                         items-center
                                                                         rounded ring-1
                                                                         ring-gray-600
@@ -103,15 +103,15 @@
                                                                         focus:border focus:border-2
                                                                         focus:border-lime-600 appearance-none
                                                                         border  w-full text-gray-700 leading-tight focus:outline-lime-600">
-                  <option value="A Receber" >A Receber</option>
+                  <option value="A_Receber" >A Receber</option>
                   <option value="Recebido">Recebido</option>
-                  <option value="Em Atraso" >Em Atraso</option>
+                  <option value="Em_Atraso" >Em Atraso</option>
                 </select>
               </div>
               <div class="flex justify-content-start pb-2 w-full mt-2">
 
                 <label class="w-1/4 text-start">Data</label>
-                <input type="month" class="input-group ml-6  w-3/4 h-8
+                <input type="date" class="input-group ml-6  w-3/4 h-8
                   rounded ring-1
                   ring-gray-600
                   focus:ring-green-700
@@ -156,24 +156,25 @@
             <tr class="border border-gray-700 border-separate border-spacing-2 hover:bg-lime-50 "
                 v-for="frete in $store.state.fretes"
                 :key="frete.id">
+
               <td>{{ frete.id }} </td>
-              <td>{{ frete.veiculo }}</td>
+              <td>{{ frete.veiculoId }}</td>
               <td>{{ frete.empresa }}</td>
 
-              <td>{{ frete.localCarga }} </td>
-              <td>{{ frete.localEntrega }} </td>
+              <td>{{ frete.carregamento }} </td>
+              <td>{{ frete.entrega }} </td>
               <td>{{ formatPrice(frete.valorFrete) }} </td>
-              <td>{{ frete.data }}</td>
-              <td>{{ frete.status }}</td>
+              <td>{{ frete.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$3-$1') }}</td>
+              <td>{{ frete.statusFrete.replace("_", " ") }}</td>
             </tr>
 
             </tbody>
           </table>
+
         </div>
       </div>
 
     </div>
-
   </div>
 </template>
 
@@ -184,13 +185,13 @@ export default {
   data() {
     return {
       fretes:{
-            veiculo: "",
-            empresa: "",
-            localCarga: "",
-            localEntrega: "",
-            valorFrete: "",
-            status: "",
-            data:""
+        veiculoId: "",
+        empresa: "",
+        carregamento: "",
+        entrega: "",
+        valorFrete: "",
+        statusFrete: "",
+        data:""
         },
     }
   },
@@ -199,16 +200,16 @@ export default {
 
     addFrete() {
       if (this.fretes){
-
         this.$store.dispatch('addFrete', this.fretes)
             .finally(() => {
               this.fretes = {
-                veiculo: "",
+                id:"",
+                veiculoId: "",
                 empresa: "",
-                localCarga: "",
-                localEntrega: "",
+                carregamento: "",
+                entrega: "",
                 valorFrete: "",
-                status: "",
+                statusFrete: "",
                 data:""
               }
             })
@@ -220,12 +221,14 @@ export default {
     },
     limpaFrete(){
       this.fretes = {
-        veiculo: "",
-        empresa: "",
-        localCarga: "",
-        localEntrega: "",
-        valorFrete: "",
-        status: ""
+          id:"",
+        veiculoId: "",
+          empresa: "",
+          carregamento: "",
+          entrega: "",
+          valorFrete: "",
+          statusFrete: "",
+          data:""
       }
     },
     formatPrice(value) {

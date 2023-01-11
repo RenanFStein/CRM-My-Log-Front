@@ -25,6 +25,7 @@ export default createStore({
                 });
         },
         storeVeiculo(state, payload){
+
             const index = state.veiculos.findIndex(frete => frete.id === payload.id)
             if (index >= 0){
                 state.veiculos.splice(index, 1, payload)
@@ -42,6 +43,7 @@ export default createStore({
                 return b.id - a.id;
             });
         },
+
         storeFrete(state, payload){
             const index = state.fretes.findIndex(frete => frete.id === payload.id)
             if (index >= 0){
@@ -50,49 +52,46 @@ export default createStore({
             else{
                 state.fretes.unshift(payload)
             }
-
         },
-
-
-
     },
     actions:{
         getVeiculos({commit}){
-            return axios.get('http://localhost:3000/veiculos')
+            return axios.get('https://localhost:7025/Veiculo')
                 .then((response) => {
                     commit('storeVeiculos', response.data)
                 })
         },
         getFretes({commit}){
-            return axios.get('http://localhost:3000/fretes')
+            return axios.get('https://localhost:7025/Frete')
                 .then((response) => {
                     commit('storeFretes', response.data)
                 })
         },
 
-
         addFrete({commit}, data){
-            return axios.post('http://localhost:3000/fretes', data)
+            return axios.post('https://localhost:7025/Frete', data)
                 .then((response) => {
-                    console.log(response.data)
                     commit('storeFrete', response.data)
                 })
         },
         addVeiculo({commit}, data){
-            return axios.post('http://localhost:3000/Veiculos', data)
-                .then((response) => {
-                    console.log(response.data)
-                    commit('storeVeiculo', response.data)
-                })
+
+            try {
+                return axios.post('https://localhost:7025/Veiculo', data)
+                    .then((response) => {
+                        commit('storeVeiculo', response.data)
+                    })
+            }
+            catch (error){
+                console.error(error);
+            }
+
         },
 
         updateFinanceiro({commit}, {id, fretes}){
-            console.log(fretes)
-            const url = 'http://localhost:3000/fretes/'+id;
-            return axios.put(url, fretes)
+            return axios.put('https://localhost:7025/Frete/'+id, fretes)
                 .then((response) =>{
                     commit("storeFrete", response.data)
-                    console.log("Atualizado")
                 })
 
         },

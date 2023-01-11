@@ -33,9 +33,8 @@ export default {
           title: {
             display: true,
             text: 'Veiculos',
-          }
+          },
         }
-
       },
     }
   },
@@ -43,7 +42,7 @@ export default {
     this.loaded = false;
     try {
       this.dashboardVeiculos = {
-        labels: this.labelVeiculos(),
+        labels: ["Ativos", "Inativos"],
         datasets: [
           {
             backgroundColor: ['rgba(121,218,248,0.4)', 'rgba(248,121,121,0.4)'],
@@ -61,13 +60,8 @@ export default {
   },
 
   methods: {
-    labelVeiculos() {
-      const dados = this.$store.state.veiculos.map((item) => item.status).filter((item) => item !== "").sort()
-      const dado =  new Set(dados);
-      return [...dado]
-    },
     filterVeiculos() {
-      const dados = this.$store.state.veiculos.map((item) => item.status).filter((item) => item !== "").sort()
+      const dados = this.$store.state.veiculos.map((item) => item.statusVeiculo).filter((item) => item !== "")
       const countMap = Object.create(null);
       for (const element of dados) {
         if (!countMap[element]) {
@@ -76,7 +70,7 @@ export default {
           countMap[element] += 1;
         }
       }
-      return Object.values(countMap)
+      return Object.values(countMap).reverse()
     }
   },
 

@@ -25,25 +25,25 @@
                   focus:ring-1
                   focus:border focus:border-2
                   focus:border-lime-600 appearance-none
-                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="veiculos.veiculo">
+                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="veiculos.modelo">
 
                 </div>
 
                 <div class="flex justify-content-start pb-2">
                   <div class="flex inline w-1/2">
                     <label class="p-1">Ano</label>
-                    <input type="number" class="input-group ml-6
+                    <input type="date" class="input-group ml-6
                   rounded ring-1
                   ring-gray-600
                   focus:ring-green-700
                   focus:ring-1
                   focus:border focus:border-2
                   focus:border-lime-600 appearance-none
-                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="veiculos.anofabricacao">
+                  border rounded w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="veiculos.anoFabricacao">
                   </div>
                   <div class="flex inline w-1/2">
                     <label class="p-1 ml-1">Aquisição</label>
-                    <input type="number" class="input-group
+                    <input type="date" class="input-group
                   rounded ring-1
                   ring-gray-600
                   focus:ring-green-700
@@ -81,7 +81,7 @@
                   border  w-full text-gray-700 leading-tight focus:outline-lime-600" v-model="veiculos.cor">
 
                   <label class="p-1 ml-5">Status</label>
-                  <input type="checkbox" v-model="veiculos.status" >
+                  <input type="checkbox" v-model="veiculos.statusVeiculo" >
                 </div>
 
               </div>
@@ -117,13 +117,15 @@
                  <tr class="border border-gray-700 border-separate border-spacing-2 hover:bg-lime-50 "
                      v-for="veiculos in $store.state.veiculos"
                      :key="veiculos.id">
+
                    <td>{{veiculos.id}}</td>
-                   <td>{{veiculos.veiculos}}Veiculos teste 01 </td>
+                   <td>{{veiculos.modelo}}Veiculos teste 01 </td>
                    <td>{{veiculos.cor}} </td>
-                   <td>{{veiculos.anofabricacao}} </td>
-                   <td>{{veiculos.anoAquisicao}} </td>
+                   <td>{{veiculos.anoFabricacao.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')}} </td>
+                   <td>{{veiculos.anoAquisicao.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')}} </td>
                    <td>{{formatPrice(veiculos.valorAquisicao)}} </td>
-                   <td>{{veiculos.status}} </td>
+                   <td v-if="veiculos.statusVeiculo === true">Ativo</td>
+                   <td v-if="veiculos.statusVeiculo === false">Inativo</td>
                 </tr>
                 </tbody>
               </table>
@@ -141,36 +143,35 @@
       data() {
         return {
           veiculos: {
-            veiculo: "",
+            modelo: "",
             cor: "",
-            anofabricacao: "",
+            anoFabricacao: "",
             anoAquisicao: "",
             valorAquisicao: "",
-            status: "",
+            statusVeiculo: "",
           }
         }
       },
       methods: {
         addVeiculo() {
           if (this.veiculos){
-            if (this.veiculos.status){
-              this.veiculos.status = "Ativo"
+            if (this.veiculos.statusVeiculo){
+              this.veiculos.statusVeiculo = true
             }
             else{
-              this.veiculos.status = "Inativo"
+              this.veiculos.statusVeiculo = false
             }
             this.$store.dispatch('addVeiculo', this.veiculos)
                 .finally(() => {
                   this.veiculos= {
-                        veiculo: "",
-                        cor: "",
-                        anofabricacao: "",
-                        anoAquisicao: "",
-                        valorAquisicao: "",
-                        status: "",
+                    modelo: "",
+                    cor: "",
+                    anoFabricacao: "",
+                    anoAquisicao: "",
+                    valorAquisicao: "",
+                    statusVeiculo: "",
                   }
                 })
-            console.log('Veiculo Adicionado com Sucesso.')
           }
           else{
             console.log('Erro ao Adicionar Veiculo.')
@@ -178,12 +179,12 @@
         },
         limpaVeiculo(){
           this.veiculos= {
-            veiculo: "",
+            modelo: "",
             cor: "",
-            anofabricacao: "",
+            anoFabricacao: "",
             anoAquisicao: "",
             valorAquisicao: "",
-            status: "",
+            statusVeiculo: "",
           }
         },
         formatPrice(value) {

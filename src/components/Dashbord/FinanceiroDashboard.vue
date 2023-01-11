@@ -2,6 +2,7 @@
   <div v-if="loadedFinanceiro">
     <Bar :data="dashFinanceiro" :options="optionsDashFinanceiro" />
   </div>
+
 </template>
 
 <script>
@@ -48,7 +49,6 @@ export default {
     this.loadedFinanceiro = false;
     try {
       this.dashFinanceiro =  {
-        labels: this.filterData(),
         datasets: [
           {
             label: ['A Receber'],
@@ -56,7 +56,7 @@ export default {
             backgroundColor: 'rgba(75, 192, 192, 0.4)',
             borderColor:  'rgb(75, 192, 192)',
             borderWidth: 1,
-            data:this.filterFinanceiro()["A Receber"]
+            data:this.filterFinanceiro()["A_Receber"]
           },
           {
             label: ['Em Atraso'],
@@ -64,7 +64,7 @@ export default {
             backgroundColor: ['rgba(255, 99, 132, 0.4)'],
             borderColor: ['rgb(255, 99, 132)'],
             borderWidth: 1,
-            data:this.filterFinanceiro()["Em Atraso"]
+            data:this.filterFinanceiro()["Em_Atraso"]
           }
         ]
       }
@@ -80,20 +80,21 @@ export default {
       return [...dado]
     },
     filterFinanceiro() {
-      const dados = this.$store.state.fretes.reduce((acc, atual) => {
-        if(acc[atual.status][atual.data]){
-          acc[atual.status][atual.data]+=atual.valorFrete
-        }
-        else{
-          acc[atual.status][atual.data]=atual.valorFrete
-        }
-        return acc
-      }, {
-        "Recebido": {},
-        "Em Atraso": {},
-        "A Receber": {}
-
-      } )
+      const dados = this.$store.state.fretes
+          .sort((a, b) => Date.parse(a.data) - Date.parse(b.data))
+          .reduce((acc, atual) => {
+            if(acc[atual.statusFrete][atual.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')]){
+              acc[atual.statusFrete][atual.data.replace(/(\d*)-(\d*)-(\d*).*/,'$2-$1')]+=atual.valorFrete
+            }
+            else{
+              acc[atual.statusFrete][atual.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')]=atual.valorFrete
+            }
+            return acc
+          }, {
+            "A_Receber": {},
+            "Recebido": {},
+            "Em_Atraso": {}
+          } )
       return dados
     },
   },

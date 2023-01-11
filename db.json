@@ -80,6 +80,15 @@
       "valorAquisicao": 27500,
       "status": "Inativo",
       "id": 8
+    },
+    {
+      "veiculo": "Mercedez 5000",
+      "cor": "Preto",
+      "anofabricacao": 2000,
+      "anoAquisicao": 2016,
+      "valorAquisicao": 80000,
+      "status": "Ativo",
+      "id": 9
     }
   ],
   "fretes": [
@@ -124,13 +133,10 @@
       "id": 4
     },
     {
-      "veiculo": "200",
-      "empresa": "200",
-      "localCarga": "200",
-      "localEntrega": "200",
-      "valorFrete": 5700,
+      "empresa": "string",
+      "valorFrete": 1000,
       "status": "A Receber",
-      "data": "2022-05",
+      "data": "2022-01-10T00:00:00",
       "id": 5
     },
     {
@@ -139,7 +145,7 @@
       "localCarga": "200",
       "localEntrega": "200",
       "valorFrete": 12200,
-      "status": "Em Atraso",
+      "status": "Recebido",
       "data": "2022-02",
       "id": 6
     },
@@ -184,13 +190,10 @@
       "id": 10
     },
     {
-      "veiculo": "Veiculos 10",
-      "empresa": "1",
-      "localCarga": "1",
-      "localEntrega": "1",
-      "valorFrete": 10000,
+      "empresa": "string",
+      "valorFrete": 1000,
       "status": "Recebido",
-      "data": "2022-05",
+      "data": "2023-01-10T12:19:06.847",
       "id": 11
     },
     {

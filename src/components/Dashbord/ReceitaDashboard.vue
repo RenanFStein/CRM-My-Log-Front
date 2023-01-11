@@ -51,7 +51,6 @@ export default {
     this.loadedReceita = false;
     try {
       this.dashReceita = {
-        labels: this.filterData(),
             datasets: [
               {
                 label: 'Receitas',
@@ -82,17 +81,17 @@ export default {
       const dados = this.$store.state.fretes
           .sort((a, b) => Date.parse(a.data) - Date.parse(b.data))
           .reduce((acc, atual) => {
-        if(acc[atual.status][atual.data]){
-          acc[atual.status][atual.data]+=atual.valorFrete
+        if(acc[atual.statusFrete][atual.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')]){
+          acc[atual.statusFrete][atual.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')]+=atual.valorFrete
         }
         else{
-          acc[atual.status][atual.data]=atual.valorFrete
+          acc[atual.statusFrete][atual.data.replace(/(\d*)-(\d*)-(\d*).*/, '$2-$1')]=atual.valorFrete
         }
         return acc
       }, {
-        "Recebido": {},
-        "Em Atraso": {},
-        "A Receber": {}
+            "A_Receber": {},
+            "Recebido": {},
+            "Em_Atraso": {}
       } )
       return dados
     },
